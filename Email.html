@@ -1,0 +1,429 @@
+<!-- 
+    **Limitations**
+    Didn't have Adobe Illustrator so changed the file extension to a .pdf and was able to view that way. Might have affected some styling but can't check
+    Used some placeholder images from a previous project I had done as they were already hosted via Mailchimp
+
+    **Notes**
+    Not run through Litmus but used some previous css and inline styling to help mitigate the problem of Outlook using the Word HMTL render engine which I am sure we have all grown to hate
+    Time to complete this about 2 hours form start to adding comments.
+    Only got font weights of 600 and 800 so made do with those with what I'd make them as I thought it was a minor issue spending my time debugging it compared to information on the page
+ -->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <title>Modular Template Patterns</title>
+
+        <style type="text/css">
+            /*////// DEBUG STYLES //////*/
+            .footerWhiteLinks{text-decoration: white underline  !important; color: #fff !important;}
+
+			/*////// RESET STYLES //////*/
+			body, #bodyTable, #bodyCell{height:100% !important; margin:0; padding:0; width:100% !important;}
+			table{border-collapse:collapse;}
+			img, a img{border:0; outline:none; text-decoration:none;}
+			h1, h2, h3, h4, h5, h6{margin:0; padding:0;}
+			p{margin: 1em 0;}
+
+			/*////// CLIENT-SPECIFIC STYLES //////*/
+			.ReadMsgBody{width:100%;} .ExternalClass{width:100%;} /* Force Hotmail/Outlook.com to display emails at full width. */
+			.ExternalClass, .ExternalClass p, .ExternalClass /*span*/, .ExternalClass font, .ExternalClass td, .ExternalClass div{line-height:100%;} /* Force Hotmail/Outlook.com to display line heights normally. */
+			table, td{mso-table-lspace:0pt; mso-table-rspace:0pt;} /* Remove spacing between tables in Outlook 2007 and up. */
+			#outlook a{padding:0;} /* Force Outlook 2007 and up to provide a "view in browser" message. */
+			img{-ms-interpolation-mode: bicubic;} /* Force IE to smoothly render resized images. */
+			body, table, td, p, a, li, blockquote{-ms-text-size-adjust:100%; -webkit-text-size-adjust:100%;} /* Prevent Windows- and Webkit-based mobile platforms from changing declared text sizes. */
+
+			/*////// GENERAL STYLES //////*/
+			body, #bodyTable{background-color:#ffffff;font-family: Arial, sans-serif, 'Open Sans';}
+			#bodyCell{padding-top:40px; padding-bottom:40px;}
+			#emailBody{background-color:#FFFFFF; border:1px solid #DDDDDD; border-collapse:separate; border-radius:4px;}
+			h1{color:#000000; font-size:40px; line-height:48x; text-align:Left; font-weight: 700;}
+            h2{color:#000000; font-size:25px; line-height:30px; text-align:Left; font-weight: 700;}
+            h3{color:#000000; font-size:16px; line-height:20px; text-align:Left; font-weight: 700;}
+            h4{color:#000000; font-size:18px; line-height:22px; text-align:Left;}
+            h5{color:#000000; font-size:15px; line-height:125%; text-align:Left;}
+            h6{color:#000000; font-size:10.72px; line-height:125%; text-align:Left;}
+            p{color:#000000; font-size:18px; line-height:22px; text-align:Left; font-weight: 300; margin: 0.5rem 0;}
+            a{color:#000000}
+
+            /*////// MAILCHIMP STYLING //////*/
+			.textContent, .textContentLast{color:#404040; font-size:16px; line-height:125%; text-align:Left; padding-bottom:20px;}
+			/* .textContent a, .textContentLast a{color:#2C9AB7; text-decoration:underline;} */
+			.nestedContainer{background-color:#E5E5E5;}
+			.emailButton{background-color:#2C9AB7; border-collapse:separate; border-radius:4px;}
+			.buttonContent{color:#FFFFFF; font-size:18px; font-weight:bold; line-height:100%; padding:15px; text-align:center;}
+			.buttonContent a{color:#FFFFFF; display:block; text-decoration:none;}
+			.emailCalendar{background-color:#FFFFFF; border:1px solid #CCCCCC;}
+			.emailCalendarMonth{background-color:#2C9AB7; color:#FFFFFF; font-family:Helvetica, Arial, sans-serif; font-size:16px; font-weight:bold; padding-top:10px; padding-bottom:10px; text-align:center;}
+			.emailCalendarDay{color:#2C9AB7; font-family:Helvetica, Arial, sans-serif; font-size:60px; font-weight:bold; line-height:100%; padding-top:20px; padding-bottom:20px; text-align:center;}
+
+		</style>
+        <!--
+        	Outlook Conditional CSS
+            These two style blocks target Outlook 2007 & 2010 specifically, forcing
+            columns into a single vertical stack as on mobile clients. This is
+            primarily done to avoid the 'page break bug' and is optional.
+            More information here:
+			http://templates.mailchimp.com/development/css/outlook-conditional-css
+        -->
+        <!--[if mso 12]>
+            <style type="text/css">
+            	.flexibleContainer{display:block !important; width:100% !important;}
+            </style>
+        <![endif]-->
+        <!--[if mso 14]>
+            <style type="text/css">
+            	.flexibleContainer{display:block !important; width:100% !important;}
+            </style>
+        <![endif]-->
+    </head>
+    <body>
+        <!-- Force Off Times New Roman in MSO -->
+        <!--[if mso]>
+        <style type="text/css">
+        body, table, td {font-family: Arial, sans-serif, 'Open Sans' !important;}
+        </style>
+        <![endif]-->
+    	<center>
+            <table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="bodyTable">
+            	<tr>
+                	<td align="center" valign="top" id="bodyCell">
+                    	<!-- EMAIL CONTAINER // -->
+                        <!--
+                        	The table "emailBody" is the email's container.
+                            Its width can be set to 100% for a color band
+                            that spans the width of the page.
+                        -->
+                    	<table border="0" cellpadding="0" cellspacing="0" width="600px" id="emailBody">
+                            <!-- MODULE ROW // -->
+							<tr>
+                            	<td align="center" valign="top">
+                                	<!-- CENTERING TABLE // -->
+                                	<table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                    	<tr>
+                                        	<td align="center" valign="top">
+                                            	<!-- FLEXIBLE CONTAINER // -->
+                                                <table border="0" cellpadding="0" cellspacing="0" width="100%"><!-- final build would determine how this is built, if I was provided a banner that was full width, three images or just the images in one img -->
+                                                    <tr>
+                                                        <td style="font-size: 14px; vertical-align: middle; width: 60%; display: flex; align-items: center; padding-left: 2rem;" valign="top">
+                                                            <a href="https://www.netapp.com/"><img src="https://www.netapp.com/media/na_logo_black_rgb_reg-mark_tcm19-21014.jpg" alt="logo1" style="float: left; max-width: 75px; height: auto; padding: 10px;"/></a>&nbsp;<span style="color: lightgrey;">|</span>&nbsp;<!-- Each would link -->
+                                                            <a href=""><img src="https://pbs.twimg.com/profile_images/750029404361875456/rlh4I3WB_400x400.jpg" alt="logo2" style="float: left; max-width: 75px; height: auto;padding: 10px;"/></a>&nbsp;<span style="color: lightgrey;">|</span>&nbsp;<!-- Each would link -->
+                                                            <a href=""><img src="https://1000logos.net/wp-content/uploads/2016/11/Cisco-logo.png" alt="logo3" style="float: left; max-width: 75px; height: auto;padding: 10px;"/></a><!-- Each would link -->
+                                                            <!-- Would prefer to do the separators as a border left with margin and padding but using different sized images off the internet it was easier to use '|' -->
+                                                        </td>
+                                                        <td style="font-size: 14px; vertical-align: middle; text-align: right; width: 40% ; align-items: center; padding-right: 2rem;"
+                                                            valign="top">
+                                                            <p style="font-size: 14px; font-weight: 500; margin: 0 0 0 auto; display: contents;">December 2022</p>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #fff746;">
+                                                    <tr>
+                                                        <td style="font-size: 14px; width: 70%; padding: 2rem" valign="top">
+                                                            <h1>Value of NetApp <br>FlexPod <br>Certification</h1>
+                                                            <p>FlexPod News | EMEA Partners Newsletter</p>
+                                                        </td>
+                                                        <td style="font-size: 14px; vertical-align: middle; text-align: center; width: 30%; align-items: center"
+                                                            valign="top">
+                                                            <div style="width: 150px; height: 150px; background-color: #ffffb0; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top: 9rem; margin-bottom: 4rem;">
+                                                                <p style="font-size: 18px; font-weight: bold; margin: 0; color: #000000;">FlexPod</p><!-- FlexPod Logo would go in here -->
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #ffffff;">
+                                                    <tr>
+                                                        <td style="width: 70%; padding: 2rem" valign="top"><!-- Matches with the line lengths and what felt right for the font sizes -->
+                                                            <p style="font-size: 12px; line-height: 18px;"><strong><em>“Our strategic relationship with NetApp continues to create value for businesses through
+                                                                deep technology integration aimed at solving our customers’ biggest challenges,”</em></strong> said Siva
+                                                                Sivakumar, vice president of Product Management at Cisco</p>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin: 0 0 0 0;padding-bottom: 0; background-colour: #FFF; ">
+                                                    <tr>
+                                                        <td valign="top">
+                                                            <a href="https://mandrillapp.com/track/click/31075407/www.google.com?p=eyJzIjoiNGZNZ1JqWHhtd1ltVkhfYjY1eXVOWEYwX0lRIiwidiI6MSwicCI6IntcInVcIjozMTA3NTQwNyxcInZcIjoxLFwidXJsXCI6XCJodHRwczpcXFwvXFxcL3d3dy5nb29nbGUuY29tXCIsXCJpZFwiOlwiYjcxN2Y0MjU5ODUxNDk4YWE4ZTg0NDJmN2E5NzJjOWNcIixcInVybF9pZHNcIjpbXCJlZjdlZmM5ODM5YzNlZTAzNmYwMjNlOTYzNWJjM2IwNTZkNmVlMmRiXCJdfSJ9" style="text-decoration: none; ">
+                                                                <img src="https://mcusercontent.com/ff6c78ff3551cdd0bff6e6976/images/de823ed6-19a6-18f6-6da3-9f819f1a886a.jpg" width="600" style="max-width:600px; max-height: 230px; width: 100%; object-fit: cover;" />
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #ffffff;">
+                                                    <tr>
+                                                        <td style="width: 100%; padding: 2rem" valign="top">
+                                                            <h2 style="font-size: 18px; line-height: 24px;">Reasons for partners to invest in a high-quality<br>NetApp certification:</h2>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <table border="0" cellpadding="0" cellspacing="0" width="70%" style="background-color: #ffffff;">
+                                                    <tr>
+                                                        <td style="width: 100%; padding: 2rem" valign="top">
+                                                            <table style="width: 100%;">
+                                                                <tr>
+                                                                    <td style="width: 33.33%; padding: 0.25rem;">
+                                                                        <div style="background-color: #fff746; border-radius: 10px; text-align: center; position: relative;">
+                                                                            <img src="spacer.gif" width="100%" height="0" style="display:block; padding-bottom:100%; content:'';">
+                                                                            <h3 style="color: black; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; text-align: center;">Deep Skills</h3>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td style="width: 33.33%; padding: 0.25rem;">
+                                                                        <div style="background-color: #fff746; border-radius: 10px; text-align: center;  position: relative;">
+                                                                            <img src="spacer.gif" width="100%" height="0" style="display:block; padding-bottom:100%; content:'';">
+                                                                            <h3 style="color: black; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; text-align: center;">Validation & recognition</h3>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td style="width: 33.33%; padding: 0.25rem;">
+                                                                        <div style="background-color: #fff746; border-radius: 10px; text-align: center;  position: relative;">
+                                                                            <img src="spacer.gif" width="100%" height="0" style="display:block; padding-bottom:100%; content:'';">
+                                                                            <h3 style="color: black; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; text-align: center;">Credibility</h3>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="width: 33.33%; padding: 0.25rem;">
+                                                                        <div style="background-color: #fff746; border-radius: 10px; text-align: center; position: relative;">
+                                                                            <img src="spacer.gif" width="100%" height="0" style="display:block; padding-bottom:100%; content:'';">
+                                                                            <h3 style="color: black; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; text-align: center;">Opportunity</h3>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td style="width: 33.33%; padding: 0.25rem;">
+                                                                        <div style="background-color: #fff746; border-radius: 10px; text-align: center;  position: relative;">
+                                                                            <img src="spacer.gif" width="100%" height="0" style="display:block; padding-bottom:100%; content:'';">
+                                                                            <h3 style="color: black; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; text-align: center;">Confidence</h3>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td style="width: 33.33%; padding: 0.25rem;">
+                                                                        <div style="background-color: #fff746; border-radius: 10px; text-align: center;  position: relative;">
+                                                                            <img src="spacer.gif" width="100%" height="0" style="display:block; padding-bottom:100%; content:'';">
+                                                                            <h3 style="color: black; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; text-align: center;">Value</h3>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #ffffff;">
+                                                    <tr>
+                                                        <td style="width: 100%; padding: 2rem 2rem" valign="top">
+                                                            <hr style="height:1px; border:none; color:lightgrey; background-color:lightgrey;">
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #ffffff;">
+                                                    <tr>
+                                                        <td style="width: 100%; padding: 2rem" valign="top">
+                                                            <h4 style="font-size: 18px; line-height: 24px; color: #fff746;">News</h4><!-- Pretty sure it wouldn't pass WCAG 2.0 so would mention -->
+                                                            <h2 style="font-size: 26px; line-height: 30px;">We are pleased to announce the <br>availability of FlexPod certification <br>courses online (e-learning)</h2>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                    <tr>
+                                                        <td style="font-size: 14px; vertical-align: middle; width: 50%; padding-right: 1rem;" valign="top">
+                                                            <table style="width: 100%; height: 100%;">
+                                                                <tr>
+                                                                    <td style="vertical-align: middle; text-align: center;">
+                                                                        <div style="width: 228px; height: 228px; background-color: #fff746; padding: 3rem; display: inline-block;">
+                                                                            <img src="https://mcusercontent.com/ff6c78ff3551cdd0bff6e6976/images/893c5195-68da-08b5-20b4-c1ce6430ee46.jpg" style="max-width:100%; max-height: 100%; width: 100%; height: 100%; object-fit: cover;" />
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                        <td style="vertical-align: middle; text-align: right; width: 50% ; align-items: center; padding-right: 2rem;" valign="top">
+                                                            <p style="font-size: 12.5px; line-height: 19px;">As our valued partners, you now have more
+                                                                options to enable their team with FlexPod
+                                                                sales & technical skills, they can go online for
+                                                                a few hours of FlexPod e-learning or join a 3-4
+                                                                days ILT.
+                                                            </p>
+                                                            <p style="font-size: 12.5px; line-height: 19px;">
+                                                                Our partners deserve to be recognized and
+                                                                differentiated based on their investments and
+                                                                competencies. Our customers and internal
+                                                                sales team are looking to connect with proven
+                                                                industry leaders through our Partner Connect
+                                                                <a href="">finder</a>.
+                                                            </p>
+                                                            <p style="font-size: 12.5px; line-height: 19px;">
+                                                                FlexPod partners are eligible to receive
+                                                                <a href="">5% back-end incentives</a> when they close a
+                                                                qualifying FlexPod deal in FY23.
+                                                            </p>
+                                                            <p style="font-size: 12.5px; line-height: 19px;">
+                                                                We encourage you as our valued partners
+                                                                to enroll for the FY23 FlexPod Specialization
+                                                                and training.
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #ffffff;">
+                                                    <tr>
+                                                        <td style="width: 100%; padding: 2rem 2rem" valign="top">
+                                                            <hr style="height:1px; border:none; color:lightgrey; background-color:lightgrey;">
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                    <tr>
+                                                        <td style="vertical-align: middle; text-align: right; width: 50% ; align-items: center; padding-left: 2rem;" valign="top">
+                                                            <h4 style="font-size: 18px; line-height: 24px; color: #fff746;">e-learning</h4>
+                                                            <h2 style="font-size: 26px; line-height: 30px;">Designing <br>FlexPod Solutions</h2>
+                                                            <p style="font-size: 12.5px; line-height: 19px;">
+                                                                ID: STRSW-WBT-DESFP
+                                                            </p>
+                                                            <p style="font-size: 12.5px; line-height: 19px;">
+                                                                This online course teaches the principles and methodology to create FlexPod® designs and explains FlexPod components, their management, and various sizing tools.
+                                                            </p>
+                                                            <p style="font-size: 12.5px; line-height: 19px; font-weight: 700; margin: 0;">
+                                                                Language: English
+                                                            </p>
+                                                            <p style="font-size: 12.5px; line-height: 19px; font-weight: 700; margin: 0;">
+                                                                Duration: 4 hours
+                                                            </p>
+                                                            <p style="font-size: 12.5px; line-height: 19px;">
+                                                                Certification exam: NS0-175 / Cisco and <br>NetApp FlexPod Design Specialist
+                                                            </p>
+                                                            <p style="font-size: 12.5px; line-height: 19px; margin-bottom: 1rem;">
+                                                                Register for exam <a href="">here</a>.
+                                                            </p>
+                                                            <a href="" style="display: inline-block; padding: 10px 20px; background-color: #fff746; color: black; text-decoration: none; font-weight: bold; border-radius: 5px;">Launch Online Course now</a>
+                                                        </td>
+                                                        <td style="font-size: 14px; vertical-align: middle; width: 50%; overflow-x: hidden;" valign="top">
+                                                            <table style="width: 100%; height: 100%;">
+                                                                <tr>
+                                                                    <td style="vertical-align: middle; text-align: end;">
+                                                                        <div style="width: 228px; height: 228px; background-color: #fff746; padding: 0 0 3rem 3rem; margin-top: -1rem; display: inline-block; position: relative;">
+                                                                            <img src="https://mcusercontent.com/ff6c78ff3551cdd0bff6e6976/images/893c5195-68da-08b5-20b4-c1ce6430ee46.jpg" style="max-width:100%; max-height: 100%; width: 100%; height: 95%; object-fit: cover; position: absolute; top: -24px; right: -3rem; " />
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #ffffff;">
+                                                    <tr>
+                                                        <td style="width: 100%; padding: 2rem 2rem" valign="top">
+                                                            <hr style="height:1px; border:none; color:lightgrey; background-color:lightgrey;">
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                    <tr>
+                                                        <td style="font-size: 14px; vertical-align: middle; width: 50%; overflow-x: hidden;" valign="top">
+                                                            <table style="width: 100%; height: 100%;">
+                                                                <tr>
+                                                                    <td style="vertical-align: middle; text-align: end;">
+                                                                        <div style="width: 228px; height: 228px; background-color: #fff746; padding: 0 0 3rem 3rem; margin-top: -1rem; display: inline-block; position: relative; margin-right: 21px;">
+                                                                            <img src="https://mcusercontent.com/ff6c78ff3551cdd0bff6e6976/images/893c5195-68da-08b5-20b4-c1ce6430ee46.jpg" style="max-width:100%; max-height: 100%; width: 100%; height: 95%; object-fit: cover; position: absolute; top: -24px; left: -3rem;" />
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                        <td style="vertical-align: middle; text-align: right; width: 50% ; align-items: center; padding-right: 2rem;" valign="top">
+                                                            <h4 style="font-size: 18px; line-height: 24px; color: #fff746;">e-learning</h4>
+                                                            <h2 style="font-size: 26px; line-height: 30px;">Implementing the <br>FlexPod Solutions</h2>
+                                                            <p style="font-size: 12.5px; line-height: 19px;">
+                                                                ID: STRHW-WBT-FPIMP
+                                                            </p>
+                                                            <p style="font-size: 12.5px; line-height: 19px;">
+                                                                The course will teach the learner to implement the FlexPod solution.
+                                                            </p>
+                                                            <p style="font-size: 12.5px; line-height: 19px; font-weight: 700; margin: 0;">
+                                                                Language: English
+                                                            </p>
+                                                            <p style="font-size: 12.5px; line-height: 19px; font-weight: 700; margin: 0;">
+                                                                Duration: 3 hours
+                                                            </p>
+                                                            <p style="font-size: 12.5px; line-height: 19px;">
+                                                                Certification exam: NS0-176 / Cisco and <br>NetApp FlexPod Implementation and <br>Administration Specialist
+                                                            </p>
+                                                            <p style="font-size: 12.5px; line-height: 19px; margin-bottom: 1rem;">
+                                                                Register for exam <a href="">here</a>.
+                                                            </p>
+                                                            <a href="" style="display: inline-block; padding: 10px 20px; background-color: #fff746; color: black; text-decoration: none; font-weight: bold; border-radius: 5px;">Launch Online Course now</a>
+                                                        </td>
+                                                    </tr>
+                                                </table>                                                
+                                                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #ffffff;">
+                                                    <tr>
+                                                        <td style="width: 100%; padding: 2rem 2rem" valign="top">
+                                                            <hr style="height:1px; border:none; color:lightgrey; background-color:lightgrey;">
+                                                        </td>
+                                                    </tr>
+                                                </table>                                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                    <tr>
+                                                        <td style="vertical-align: middle; text-align: right; width: 50% ; align-items: center; padding-left: 2rem;" valign="top">
+                                                            <h4 style="font-size: 18px; line-height: 24px; color: #fff746;">e-learning</h4>
+                                                            <h2 style="font-size: 26px; line-height: 30px;">FY23 FlexPod Specialized <br>Sales Professional</h2>
+                                                            <p style="font-size: 12.5px; line-height: 19px;">
+                                                                ID: 000037372
+                                                            </p>
+                                                            <p style="font-size: 12.5px; line-height: 19px;">
+                                                                For an introduction to selling NetApp
+                                                                FlexPod Solutions, you can complete this
+                                                                curriculum. Designed as an interactive
+                                                                program, it enables you to successfully
+                                                                position and message the value of NetApp
+                                                                FlexPod Solution in the marketplace using
+                                                                valuable tools and resources to help you
+                                                                increase revenue and marketshare.
+                                                            </p>
+                                                            <p style="font-size: 12.5px; line-height: 19px; font-weight: 700; margin: 0;">
+                                                                Language: English
+                                                            </p>
+                                                            <p style="font-size: 12.5px; line-height: 19px; font-weight: 700; margin: 0;">
+                                                                Duration: <1 hour
+                                                            </p>
+                                                            <p style="font-size: 12.5px; line-height: 19px;">
+                                                                Certification exam: NS0-072 / Cisco and <br>NetApp FlexPod Design Specialist
+                                                            </p>
+                                                            <p style="font-size: 12.5px; line-height: 19px; margin-bottom: 1rem;">
+                                                                Register for exam <a href="">here</a>.
+                                                            </p>
+                                                            <a href="" style="display: inline-block; padding: 10px 20px; background-color: #fff746; color: black; text-decoration: none; font-weight: bold; border-radius: 5px;">Launch Online Course now</a>
+                                                        </td>
+                                                        <td style="font-size: 14px; vertical-align: middle; width: 50%; overflow-x: hidden;" valign="top">
+                                                            <table style="width: 100%; height: 100%;">
+                                                                <tr>
+                                                                    <td style="vertical-align: middle; text-align: end;">
+                                                                        <div style="width: 228px; height: 228px; background-color: #fff746; padding: 0 0 3rem 3rem; margin-top: -1rem; display: inline-block; position: relative;">
+                                                                            <img src="https://mcusercontent.com/ff6c78ff3551cdd0bff6e6976/images/893c5195-68da-08b5-20b4-c1ce6430ee46.jpg" style="max-width:100%; max-height: 100%; width: 100%; height: 95%; object-fit: cover; position: absolute; top: -24px; right: -3rem;" />
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #ffffff;">
+                                                    <tr>
+                                                        <td style="width: 100%; padding: 2rem 2rem" valign="top">
+                                                            <hr style="height:1px; border:none; color:lightgrey; background-color:lightgrey;">
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <!-- // FLEXIBLE CONTAINER -->
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <!-- // CENTERING TABLE -->
+                                </td>
+                            </tr>
+                            <!-- // MODULE ROW -->
+                        </table>
+                    	<!-- // EMAIL CONTAINER -->
+                    </td>
+                </tr>
+            </table>
+        </center>
+    </html>
